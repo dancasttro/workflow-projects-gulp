@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
 	precss = require('precss'),
 	lost = require('lost'),
-	autoprefixer = require('autoprefixer-core'),
+	autoprefixer = require('autoprefixer'),
     header = require('gulp-header'),
     rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
@@ -19,12 +19,12 @@ var gulp = require('gulp'),
 
 gulp.task(config.tasks.styles, function() {
 
+    var processors = [
+        lost,
+        precss({}),
+        autoprefixer({browsers: ['last 2 version'], cascade: false})
+    ];
     return gulp.src(config.src.styles)
-        var processors = [
-            lost,
-            precss({}),
-            autoprefixer({browsers: ['last 2 version'], cascade: false)
-        ];
         .pipe(postcss(processors))
         .pipe(gulp.dest(config.dist.styles));
 
