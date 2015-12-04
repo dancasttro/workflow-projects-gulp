@@ -28,17 +28,7 @@ msg '																			 '
 ##################
 function init {
 	folder
-	clone
 	dependecies
-}
-
-
-function clone {
-
-	msg_install "Clonando..."
-	git clone https://github.com/dancasttro/html-boilerplate-project.git public
-	msg_ok "OK"
-
 }
 
 function folder {
@@ -48,6 +38,7 @@ function folder {
 	msg_ok "OK"
 
 }
+
 function dependecies {
 	msg_installing "Installing Dependencies... please wait."
 	sudo npm install

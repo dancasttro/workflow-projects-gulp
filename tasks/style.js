@@ -8,17 +8,31 @@
 var gulp = require('gulp'),
     config = require('../gulp.conf.js'),
     pkg = require('../package.json'),
-    sass = require('gulp-ruby-sass'),
+    postcss = require('gulp-postcss'),
+	precss = require('precss'),
+	lost = require('lost'),
+	autoprefixer = require('autoprefixer-core'),
     header = require('gulp-header'),
     rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
     minifycss = require('gulp-minify-css');
 
 gulp.task(config.tasks.styles, function() {
+
     return gulp.src(config.src.styles)
-        .pipe(sass())
-        .pipe(banner())
+        var processors = [
+            lost,
+            precss({}),
+            autoprefixer({browsers: ['last 2 version'], cascade: false)
+        ];
+        .pipe(postcss(processors))
         .pipe(gulp.dest(config.dist.styles));
+
+
+    // return gulp.src(config.src.styles)
+    //     .pipe(sass())
+    //     .pipe(banner())
+    //     .pipe(gulp.dest(config.dist.styles));
 
     // return gulp.src(config.src.styles)
     //     .pipe(stylus({

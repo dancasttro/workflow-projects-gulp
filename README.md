@@ -22,5 +22,5 @@ $ [sudo] sh install
 $ git clone https://github.com/dancasttro/workflow-projects-gulp.git
 
 # 2. Execute
-$ [sudo] sf install
+$ [sudo] sh install
 ```
