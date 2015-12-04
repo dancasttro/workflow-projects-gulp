@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     postcss = require('gulp-postcss'),
 	precss = require('precss'),
 	lost = require('lost'),
+	rucksack = require('rucksack-css'),
 	autoprefixer = require('autoprefixer'),
     header = require('gulp-header'),
     rename = require('gulp-rename'),
@@ -21,6 +22,7 @@ gulp.task(config.tasks.styles, function() {
 
     var processors = [
         lost,
+        rucksack,
         precss({}),
         autoprefixer({browsers: ['last 2 version'], cascade: false})
     ];
