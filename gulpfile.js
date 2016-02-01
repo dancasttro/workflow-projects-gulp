@@ -14,7 +14,7 @@ var gulp = require('gulp'),
 
 gulp.task('build', [config.tasks.styles, config.tasks.cssmin, config.tasks.jsmin, config.tasks.imagemin,config.tasks.zip]);
 
-gulp.task('start', [config.tasks.styles, config.tasks.imagemin, config.tasks.jslint, config.tasks.browsersync]);
+gulp.task('start', [config.tasks.styles, config.tasks.imagemin, config.tasks.browsersync]);
 
 gulp.task('default',['start'], function() {
   gulp.watch('src/styles/**/*.css', [config.tasks.styles, reload]);

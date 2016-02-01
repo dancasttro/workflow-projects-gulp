@@ -9,10 +9,12 @@ var gulp = require('gulp'),
     config = require('../gulp.conf.js'),
     pkg = require('../package.json'),
     postcss = require('gulp-postcss'),
-	precss = require('precss'),
-	lost = require('lost'),
-	rucksack = require('rucksack-css'),
-	autoprefixer = require('autoprefixer'),
+    precss = require('precss'),
+    lost = require('lost'),
+    // rucksack = require('gulp-rucksack'),
+    rucksack = require('rucksack-css'),
+    autoprefixer = require('autoprefixer'),
+    inlinesvg = require('postcss-inline-svg'),
     header = require('gulp-header'),
     rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
@@ -22,19 +24,15 @@ gulp.task(config.tasks.styles, function() {
 
     var processors = [
         lost,
+        precss,
+        inlinesvg,
         rucksack,
-        precss({}),
         autoprefixer({browsers: ['last 2 version'], cascade: false})
     ];
     return gulp.src(config.src.styles)
         .pipe(postcss(processors))
+        // .pipe(rucksack())
         .pipe(gulp.dest(config.dist.styles));
-
-
-    // return gulp.src(config.src.styles)
-    //     .pipe(sass())
-    //     .pipe(banner())
-    //     .pipe(gulp.dest(config.dist.styles));
 
     // return gulp.src(config.src.styles)
     //     .pipe(stylus({
