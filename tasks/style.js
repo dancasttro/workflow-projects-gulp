@@ -4,50 +4,29 @@
    save to: public/css/style.css
    dependence: gulp-stylus, gulp-plumber, gulp-minify-css
 ***************************************************************/
+'use strict';
 
 var gulp = require('gulp'),
     config = require('../gulp.conf.js'),
     pkg = require('../package.json'),
-    postcss = require('gulp-postcss'),
-    precss = require('precss'),
-    lost = require('lost'),
-    // rucksack = require('gulp-rucksack'),
-    rucksack = require('rucksack-css'),
-    autoprefixer = require('autoprefixer'),
-    inlinesvg = require('postcss-inline-svg'),
+    sass = require('gulp-sass'),
     header = require('gulp-header'),
     rename = require('gulp-rename'),
     plumber = require('gulp-plumber'),
     minifycss = require('gulp-minify-css');
 
 gulp.task(config.tasks.styles, function() {
-
-    var processors = [
-        lost,
-        precss,
-        inlinesvg,
-        rucksack,
-        autoprefixer({browsers: ['last 2 version'], cascade: false})
-    ];
-    return gulp.src(config.src.styles)
-        .pipe(postcss(processors))
-        // .pipe(rucksack())
-        .pipe(gulp.dest(config.dist.styles));
-
-    // return gulp.src(config.src.styles)
-    //     .pipe(stylus({
-    //         use: ['nib']
-    //     }))
-    //     .pipe(plumber())
-    //     .pipe(gulp.dest(config.dist.styles));
+   return gulp.src(config.src.styles)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest(config.dist.styles));
 });
 
 gulp.task(config.tasks.cssmin, function() {
-    return gulp.src('public/styles/style.css')
-        .pipe(plumber())
-        .pipe(minifycss())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(config.dist.styles));
+  return gulp.src('public/styles/app.css')
+    .pipe(plumber())
+    .pipe(minifycss())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest(config.dist.styles));
 });
 
 
