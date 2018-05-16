@@ -13,7 +13,7 @@ module.exports = {
     dist: {
       main    : 'public',
       styles  : 'public/styles/',
-      js : 'public/scripts/',
+      js      : 'public/scripts/',
       imgs    : 'public/imgs/*',
       fonts   : 'public/fonts/'
     },

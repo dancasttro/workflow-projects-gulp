@@ -13,13 +13,6 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     stylish = require('jshint-stylish');
 
-var vendor = {
-    // vendor scripts required to start the app
-    base: {
-        source: require('../vendor.json')
-    }
-};
-
 
 // lint my custom js
 gulp.task(config.tasks.jslint, function() {
@@ -41,10 +34,5 @@ gulp.task(config.tasks.jsmin, function() {
 gulp.task(config.tasks.jsconcat, function() {
    return gulp.src('src/scripts/**/*.js')
         .pipe(concat('app.js'))
-        .pipe(gulp.dest('public/scripts/'));
-});
-gulp.task(config.tasks.jsbower, function() {
-    return gulp.src(vendor.base.source)
-        .pipe(concat('base.js'))
         .pipe(gulp.dest('public/scripts/'));
 });
