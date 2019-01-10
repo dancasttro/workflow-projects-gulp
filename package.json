@@ -1,8 +1,8 @@
 {
-	"name": "gulp-es6",
+	"name": "workflow-project",
 	"version": "1.0.0",
 	"description": "Gulpfile setup for Javascript ES6 compiling, plus SCSS, images, and fonts handling",
-	"author": "",
+	"author": "Daniel Castro",
 	"keywords": [
 		"gulp",
 		"es6",
@@ -47,5 +47,8 @@
 	"browserify-shim": {
 		"jquery": "$"
 	},
-	"license": "GPL-3.0"
+	"license": "GPL-3.0",
+	"dependencies": {
+		"acorn": "^6.0.5"
+	}
 }
